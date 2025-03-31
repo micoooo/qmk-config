@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "quantum.h"
 
 // Tap Dance declarations
 enum {
@@ -14,8 +15,7 @@ enum planck_layers {
 };
 
 enum planck_keycodes {
-  PLOVER = SAFE_RANGE,
-  LOWER,
+  LOWER = SAFE_RANGE,
   RAISE,
   BACKLIT,
   EXT_PLV
