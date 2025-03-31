@@ -1,6 +1,10 @@
 #include QMK_KEYBOARD_H
 #include "quantum.h"
 
+enum {
+  NXT_PRV
+};
+
 enum planck_layers {
   _BASE,
   _FKEYS,
@@ -11,8 +15,7 @@ enum planck_layers {
 
 enum planck_keycodes {
   LOWER = SAFE_RANGE,
-  RAISE,
-  NXT_PRV
+  RAISE
 };
 
 #define FKEYS MO(_FKEYS)
