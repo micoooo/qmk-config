@@ -26,7 +26,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,       KC_SPC,       RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    FKEYS,   KC_LCTL, KC_LALT, KC_LGUI, LOWER,       KC_SPC,       RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+  ),
+
+  /* Function keys, mouse emulation and less commonly used special keys.
+   * ,-----------------------------------------------------------------------------------.
+   * |      |  F1  |  F2  |  F3  |  F4  |      |      |      |      | MS U |      |  Del |
+   * |------+------+------+------+------+-------------+------+------+------+------+------|
+   * | Ctrl |  F5  |  F6  |  F7  |  F8  |      | WH D | MS L | MS D | MS R | WH U |      |
+   * |------+------+------+------+------+------|------+------+------+------+------+------|
+   * |      |  F9  |  F10 |  F11 |  F12 |      |      |  F13 |  F14 |  F15 |  F16 |      |
+   * |------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |             | Acl0 | Btn1 | Btn2 |      |      |
+   * `-----------------------------------------------------------------------------------'
+   */
+  [_FKEYS] = LAYOUT_planck_mit(
+    _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, _______, _______, KC_MS_U, _______, _______, KC_DEL,
+    KC_LCTL, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, KC_WH_D, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_U, _______,
+    _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  _______,
+    _______, _______, _______, _______, _______,     _______,      KC_ACL0, KC_BTN1, KC_BTN2, _______, _______
   ),
 
   /* Lower
@@ -104,17 +122,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-      } else {
-        unregister_code(KC_RSFT);
       }
       return false;
       break;
