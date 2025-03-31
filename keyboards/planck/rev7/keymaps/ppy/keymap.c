@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "common.h"
+#include "quantum.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
