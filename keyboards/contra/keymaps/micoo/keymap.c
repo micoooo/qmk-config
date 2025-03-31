@@ -1,34 +1,15 @@
 #include QMK_KEYBOARD_H
+#include "common.h"
+
 // ! Remove quantum.h before commit
 // #include "quantum.h"
-
-// Tap Dance declarations
-enum {
-    TD_NXT_PRV,
-};
-
-enum planck_layers {
-  _BASE,
-  _LOWER,
-  _RAISE,
-  _PLOVER,
-  _ADJUST
-};
-
-enum planck_keycodes {
-  PLOVER = SAFE_RANGE,
-  LOWER,
-  RAISE,
-  BACKLIT,
-  EXT_PLV
-};
 
 #define BASE PDF(_BASE)
 
 // Tap Dance definitions
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Next Track, twice for Previous Track
-    [TD_NXT_PRV] = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
+    [NXT_PRV] = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -63,10 +44,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT_planck_mit(
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_BSPC,
-    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,    KC_LCBR, KC_RCBR, KC_PIPE,
-    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  S(KC_NUHS), S(KC_NUBS), KC_HOME, KC_END,  _______,
-    _______, _______, _______, _______, _______,     _______,      _______,    TD_NXT_PRV, KC_VOLD, KC_VOLU, KC_MPLY
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,     KC_LPRN, KC_RPRN, KC_BSPC,
+    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,     KC_LCBR, KC_RCBR, KC_PIPE,
+    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  S(KC_NUHS), S(KC_NUBS),  KC_HOME, KC_END,  _______,
+    _______, _______, _______, _______, _______,     _______,      _______,    TD(NXT_PRV), KC_VOLD, KC_VOLU, KC_MPLY
   ),
 
   /* Raise
@@ -81,10 +62,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT_planck_mit(
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,       KC_9,    KC_0,    KC_BSPC,
-    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,     KC_LBRC, KC_RBRC, KC_BSLS,
-    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS,    KC_PGUP, KC_PGDN, _______,
-    _______, _______, _______, _______, _______,     _______,      _______, TD_NXT_PRV, KC_VOLD, KC_VOLU, KC_MPLY
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,        KC_9,    KC_0,    KC_BSPC,
+    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,      KC_LBRC, KC_RBRC, KC_BSLS,
+    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS,     KC_PGUP, KC_PGDN, _______,
+    _______, _______, _______, _______, _______,     _______,      _______, TD(NXT_PRV), KC_VOLD, KC_VOLU, KC_MPLY
   ),
 
   /* Plover layer (http://opensteno.org)
